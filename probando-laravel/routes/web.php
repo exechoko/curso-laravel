@@ -37,3 +37,17 @@ Route::get('/contacto/{nombre?}/{edad?}', function($nombre = "Exequiel Marichal"
   'nombre'=> '[A-Za-z]+', //para validar que el parametro sea letras
   'edad' => '[0-9]+' //valida que el parametro sean numeros
 ]);
+
+Route::group(['prefix' => 'fruteria'], function(){
+
+  Route::get('/frutas', 'FrutasController@getIndex');
+  Route::get('/naranjas/{admin?}', ['middleware' => 'EsAdmin',
+                                    'uses' => 'FrutasController@getNaranjas'
+                                   ]);
+  Route::get('/peras', 'FrutasController@anyPeras');
+});
+
+Route::post('/recibir', 'FrutasController@recibirFormulario');
+
+//RESTful
+// No funcionas en esta version Route::controller('frutas','FrutasController');
