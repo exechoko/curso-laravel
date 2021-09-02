@@ -49,5 +49,7 @@ Route::group(['prefix' => 'fruteria'], function(){
 
 Route::post('/recibir', 'FrutasController@recibirFormulario');
 
+Route::get('/notas', 'NotesController@getIndex');
+
 //RESTful
 // No funcionas en esta version Route::controller('frutas','FrutasController');
